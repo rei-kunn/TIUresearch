@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4">Text Summarizer</h2>
+        <h2 class="mb-4">Patent Claims Summarizer & Claims Dependency Graph Visualizer</h2>
         <form method="POST" action="/summarize">
             <div class="form-group">
-                <label for="inputText"><strong>Enter Text to Summarize:</strong></label>
+                <label for="inputText"><strong>Enter Patent Claims to Summarize:</strong></label>
                 <textarea class="form-control" id="inputText" name="inputText" rows="8" placeholder="Enter your text here"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Summarize</button>
+            <button type="submit" class="btn btn-primary">Summarize & Produce Graph</button>
         </form>
     </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
