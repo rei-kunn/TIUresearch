@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary Results</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .scrollable-text {
+            height: 400px;
+            overflow-y: scroll;
+            padding: 15px;
+            /* Added padding */
+            background-color: #f7f7f7;
+            /* Light background */
+            border: 1px solid #ddd;
+            /* Subtle border */
+            border-radius: 4px;
+            /* Rounded corners */
+        }
+
+        /* Custom scrollbar styling */
+        .scrollable-text::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .scrollable-text::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        .scrollable-text::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .claim-item {
+            margin-bottom: 10px;
+        }
+
+        .dependency-graph {
+            max-width: 50vw; /* 50% of the viewport width */
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Summary Results</h2>
+
+        <!-- Dependency Graph Section -->
+        <div class="content-section">
+            <h3>Dependency Graph</h3>
+            <img src="{{ url_for('static', filename=graph_image) }}" alt="Dependency Graph" class="img-fluid dependency-graph">
+        </div>
+
+        <!-- Original Text Section -->
+        <div class="content-section">
+            <h3>Original Text (Total {{ total_word_count }} words)</h3>
+            <div class="scrollable-text">
+                {% for sentence, word_count in original_text %}
+                <div class="claim-item">
+                    <strong>Claim ({{ word_count }} words):</strong>
+                    <p>{{ sentence }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Summarized Text Section -->
+        <div class="content-section">
+            <h3>Summarized Text ({{ summary_word_count }} words)</h3>
+            <div class="scrollable-text">
+                <p>{{ summary }}</p>
+            </div>
+        </div>
+
+        <a href="/" class="btn btn-primary mt-3">Try Another Text</a>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
