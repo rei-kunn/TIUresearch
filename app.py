@@ -7,19 +7,14 @@ import math
 import operator
 import re
 from flask import Flask, jsonify, render_template, request
-from tfidf_sum import summarize_text, process_claims_v10, extract_dependencies
+from tfidf_sum import process_claims_v10, extract_dependencies
 import os
 import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 import json
-# from markupsafe import escape
-# Download necessary NLTK data sets
-nltk.download('punkt')  # Example: Download the Punkt tokenizer models
-nltk.download('averaged_perceptron_tagger')  # Example: POS tagger
-nltk.download('wordnet')  # Example: WordNet Lemmatizer
-nltk.download('stopwords') 
+
 
 app = Flask(__name__)
 
