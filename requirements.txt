@@ -15,3 +15,4 @@ Werkzeug==3.0.1
 yarl==1.9.3
 matplotlib  # Example version, replace with your current version
 networkx # Example version, replace with your current version
+gunicorn

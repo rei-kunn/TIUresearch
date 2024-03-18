@@ -1,4 +1,18 @@
 import re
+import nltk
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+# Ensure necessary NLTK datasets are downloaded
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('stopwords')
+nltk.download('punkt')
+
+# Initialize Lemmatizer
+wordlemmatizer = WordNetLemmatizer()
+Stopwords = set(stopwords.words('english'))
 
 def process_claims_v10(dirty_claim):
     # Split the claims on each claim number or range of claim numbers

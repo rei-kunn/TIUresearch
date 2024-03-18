@@ -19,10 +19,21 @@ import json
 app = Flask(__name__)
 
 sample_claims = []
+# def setup_nltk():
+#     nltk.download('averaged_perceptron_tagger')
+#     nltk.download('wordnet')
+#     nltk.download('stopwords')
+
 def setup_nltk():
-    nltk.download('averaged_perceptron_tagger')
-    nltk.download('wordnet')
-    nltk.download('stopwords')
+    nltk_data_path = "/workspace/nltk_data"
+    if not os.path.exists(nltk_data_path):
+        os.makedirs(nltk_data_path)
+    nltk.data.path.append(nltk_data_path)
+    nltk.download('averaged_perceptron_tagger', download_dir=nltk_data_path)
+    nltk.download('wordnet', download_dir=nltk_data_path)
+    nltk.download('stopwords', download_dir=nltk_data_path)
+
+setup_nltk()
 
 # Initialize Lemmatizer
 wordlemmatizer = WordNetLemmatizer()
@@ -184,5 +195,5 @@ def summarize():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    # setup_nltk()
+    setup_nltk()
     app.run(debug=True)
