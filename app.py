@@ -184,5 +184,5 @@ def summarize():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    setup_nltk()
+    # setup_nltk()
     app.run(debug=True)
