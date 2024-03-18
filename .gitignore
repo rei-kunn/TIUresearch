@@ -1,6 +1,3 @@
-.DS_Store
-text-summ/
-summarization_using_tfidf.ipynb
 .vscode/
-neuralcoref/
-demo/tfidf_sum.py
+__pycache__/
+*.pyc
