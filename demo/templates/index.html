@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Summarizer</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Adding jQuery for AJAX call -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container mt-5">
         <h2 class="mb-4">Patent Claims Summarizer & Claims Dependency Graph Visualizer</h2>
+        <button id="fetchRandomClaim" class="btn btn-info mb-3">Load Random Claim</button>
         <form method="POST" action="/summarize">
             <div class="form-group">
                 <label for="inputText"><strong>Enter Patent Claims to Summarize:</strong></label>
@@ -17,6 +20,22 @@
             <button type="submit" class="btn btn-primary">Summarize & Produce Graph</button>
         </form>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#fetchRandomClaim").click(function() {
+                $.ajax({
+                    url: "/get_random_claim",
+                    type: "GET",
+                    success: function(data) {
+                        $("#inputText").val(data.claim); // Assuming the response has a 'claim' field
+                    },
+                    error: function(error) {
+                        console.log("Error fetching random claim: ", error);
+                    }
+                });
+            });
+        });
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

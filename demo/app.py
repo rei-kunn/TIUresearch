@@ -1,3 +1,4 @@
+import random
 import matplotlib
 matplotlib.use('Agg')  # Configure non-interactive backend
 import matplotlib.pyplot as plt
@@ -5,17 +6,19 @@ import networkx as nx
 import math
 import operator
 import re
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 from tfidf_sum import summarize_text, process_claims_v10, extract_dependencies
 import os
 import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
+import json
 # from markupsafe import escape
 
 app = Flask(__name__)
 
+sample_claims = []
 def setup_nltk():
     nltk.download('averaged_perceptron_tagger')
     nltk.download('wordnet')
@@ -138,9 +141,21 @@ def create_dependency_graph(claims, dependencies, file_path='static/dependency_g
     plt.savefig(file_path)
     plt.close()
 
+def load_sample_claims():
+    with open('templates/claims_samples.json', 'r') as file:
+        global sample_claims
+        sample_claims = json.load(file)
+
+load_sample_claims()
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/get_random_claim', methods=['GET'])
+def get_random_claim():
+    random_claim = random.choice(sample_claims)  # Randomly selects one dictionary from the list
+    return jsonify(random_claim)
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
