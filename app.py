@@ -25,7 +25,7 @@ sample_claims = []
 #     nltk.download('stopwords')
 
 def setup_nltk():
-    nltk_data_path = "/workspace/nltk_data"
+    nltk_data_path = "nltk_data"
     if not os.path.exists(nltk_data_path):
         os.makedirs(nltk_data_path)
     nltk.data.path.append(nltk_data_path)
