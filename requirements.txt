@@ -9,10 +9,10 @@ nltk==3.8.1
 numpy==1.26.2
 openai==0.28.0
 regex==2023.10.3
-requests  # Example version, replace with your current version
+requests  
 tqdm==4.66.1
 Werkzeug==3.0.1
 yarl==1.9.3
-matplotlib  # Example version, replace with your current version
-networkx # Example version, replace with your current version
+matplotlib  
+networkx
 gunicorn
