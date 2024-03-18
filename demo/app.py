@@ -15,6 +15,11 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 import json
 # from markupsafe import escape
+# Download necessary NLTK data sets
+nltk.download('punkt')  # Example: Download the Punkt tokenizer models
+nltk.download('averaged_perceptron_tagger')  # Example: POS tagger
+nltk.download('wordnet')  # Example: WordNet Lemmatizer
+nltk.download('stopwords') 
 
 app = Flask(__name__)
 

@@ -2,5 +2,5 @@
 text-summ/
 summarization_using_tfidf.ipynb
 .vscode/
-neuralcoref
-demo/requirements.txt
+neuralcoref/
+demo/tfidf_sum.py
