@@ -1,6 +1,6 @@
 import random
 import matplotlib
-matplotlib.use('Agg')  # Configure non-interactive backend
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import networkx as nx
 import math
@@ -25,13 +25,18 @@ sample_claims = []
 #     nltk.download('stopwords')
 
 def setup_nltk():
-    nltk_data_path = "nltk_data"
+    nltk_data_path = os.path.join(os.getcwd(), "nltk_data")
     if not os.path.exists(nltk_data_path):
         os.makedirs(nltk_data_path)
-    nltk.data.path.append(nltk_data_path)
-    nltk.download('averaged_perceptron_tagger', download_dir=nltk_data_path)
-    nltk.download('wordnet', download_dir=nltk_data_path)
-    nltk.download('stopwords', download_dir=nltk_data_path)
+    if nltk_data_path not in nltk.data.path:
+        nltk.data.path.append(nltk_data_path)
+    
+    try:
+        nltk.download('averaged_perceptron_tagger', download_dir=nltk_data_path)
+        nltk.download('wordnet', download_dir=nltk_data_path)
+        nltk.download('stopwords', download_dir=nltk_data_path)
+    except Exception as e:
+        print(f"An error occurred while downloading NLTK data: {e}")
 
 setup_nltk()
 
@@ -196,4 +201,4 @@ def summarize():
 
 if __name__ == "__main__":
     setup_nltk()
-    app.run(debug=True)
+    app.run(debug=False)
